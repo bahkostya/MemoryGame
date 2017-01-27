@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "extends": "airbnb",
+    "rules": {
+        "arrow-body-style": 1,
+        "arrow-parens": [2, "as-needed"],
+        "react/prop-types": 0,
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prefer-stateless-function": 1,
+        "react/sort-comp": [2, {
+            "order": [
+                "static-methods",
+                "lifecycle",
+                "/^on.+$/",
+                "/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/",
+                "everything-else",
+                "/^render.+$/",
+                "render"
+            ],
+        }],
+        "react/jsx-sort-props": [2, {
+            "callbacksLast": true,
+            "ignoreCase": true
+        }],
+        "import/first": 0,
+        "import/extensions": 0,
+        "no-use-before-define": 0
+    }
+}

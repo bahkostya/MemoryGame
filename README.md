@@ -17,6 +17,9 @@ The project was built with Webpack.
 2. ```$ npm start```
 3. open http://localhost:8090
 
+## 
+Images are received randomly every time you start new game from [unsplash.it](https://unsplash.it/).
+
 Game has dificulty levels: 2x2, 4x4, 6x6. You can stop game any time and have a chance to continue playing for 1 hour since game started (state saved in local storage).
 
 Here you can find [demo](bahkostya.github.io/MemoryGame/public/). Enjoy!

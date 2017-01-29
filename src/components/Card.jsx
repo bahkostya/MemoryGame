@@ -16,15 +16,15 @@ export default class Card extends Component {
 
         return (
             <div
-                className={`${isGuessed ? styles.guessed : styles.root}`}
+                className={isGuessed ? styles.guessed : styles.root}
                 onClick={() => this.handleClick()}
             >
                 <img
-                    className={`${isOpened ? styles.frontFlipped : styles.frontSide}`}
+                    className={isOpened ? styles.frontFlipped : styles.frontSide}
                     src={image}
                 />
                 <div
-                    className={`${isOpened ? styles.backFlipped : styles.backSide}`}
+                    className={isOpened ? styles.backFlipped : styles.backSide}
                 />
             </div>
         );

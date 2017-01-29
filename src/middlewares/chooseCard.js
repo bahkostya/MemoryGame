@@ -3,8 +3,8 @@ import {
     GUESS_PAIR,
     guessPair,
     openCard,
-    closeCardsWithPause,
-    finishGameWithPause,
+    closeCards,
+    finishGame,
 } from '../actions';
 
 import {
@@ -20,25 +20,26 @@ export default store => next => action => {
         case CHOOSE_CARD: {
             if (!isFirstCardOpened(store.getState().get('game'))) {
                 store.dispatch(openCard(action.cardId));
-
-                return result;
-            }
-
-            if (isPair(store.getState().get('game'), action.cardId)) {
+            } else if (isPair(store.getState().get('game'), action.cardId)) {
                 store.dispatch(guessPair(action.cardId));
+            } else {
+                store.dispatch(openCard(action.cardId));
 
-                return result;
+                setTimeout(() => {
+                    store.dispatch(closeCards());
+                }, 500);
             }
 
-            store.dispatch(openCard(action.cardId));
-            store.dispatch(closeCardsWithPause(500));
             return result;
         }
 
         case GUESS_PAIR: {
             const gameSize = store.getState().getIn(['game', 'size']);
+
             if (getGuessedPairsTotal(store.getState().get('game')) === gameSize * gameSize) {
-                store.dispatch(finishGameWithPause(1000));
+                setTimeout(() => {
+                    store.dispatch(finishGame());
+                }, 1000);
             }
 
             return result;

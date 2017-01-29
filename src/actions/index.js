@@ -34,18 +34,6 @@ export const closeCards = () => ({
     type: CLOSE_CARDS,
 });
 
-export const closeCardsWithPause = time => dispatch => {
-    setTimeout(() => {
-        dispatch(closeCards());
-    }, time);
-};
-
 export const finishGame = () => ({
     type: FINISH_GAME,
 });
-
-export const finishGameWithPause = time => dispatch => {
-    setTimeout(() => {
-        dispatch(finishGame());
-    }, time);
-};

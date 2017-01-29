@@ -9,11 +9,11 @@ import Grid from '../components/Grid.jsx';
 @connect(mapStateToProps, actions)
 export default class GameGrid extends Component {
     render() {
-        const { grid, chooseCard, ifFinished } = this.props;
+        const { grid, chooseCard, isFinished } = this.props;
 
         return (
             <Grid
-                ifFinished={ifFinished}
+                isFinished={isFinished}
                 rows={grid}
                 onChooseCard={chooseCard}
             />
@@ -38,6 +38,6 @@ function getGameGrid(state) {
 function mapStateToProps(state) {
     return {
         grid: getGameGrid(state),
-        ifFinished: state.getIn(['game', 'isFinished']),
+        isFinished: state.getIn(['game', 'isFinished']),
     };
 }

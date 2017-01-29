@@ -6,12 +6,12 @@ import Card from './Card.jsx';
 import styles from './Grid.scss';
 
 export default props => {
-    const { rows, onChooseCard, ifFinished } = props;
+    const { rows, onChooseCard, isFinished } = props;
 
     return (
         <div className={styles.root}>
             {
-                ifFinished
+                isFinished
                 ? <div className={styles.congrats}>🎉 CONGRATS! 🎉</div>
                 : rows.map((row, idx) =>
                     <div

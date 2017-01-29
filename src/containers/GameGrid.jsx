@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { List } from 'immutable';
 
 import * as actions from '../actions';
+import { getGameGrid, isFinished } from '../selectors';
 
 import Grid from '../components/Grid.jsx';
 
@@ -21,23 +21,9 @@ export default class GameGrid extends Component {
     }
 }
 
-function getGameGrid(state) {
-    const cards = state.getIn(['game', 'cards']);
-    const size = state.getIn(['game', 'size']);
-
-    return cards.reduce((rows, cell) => {
-        const rowIdx = Math.floor(cell.get('id') / size);
-        const row = rows.get(rowIdx);
-
-        return row
-            ? rows.set(rowIdx, row.push(cell))
-            : rows.push(new List([cell]));
-    }, new List());
-}
-
 function mapStateToProps(state) {
     return {
         grid: getGameGrid(state),
-        isFinished: state.getIn(['game', 'isFinished']),
+        isFinished: isFinished(state),
     };
 }

@@ -6,6 +6,7 @@ import {
     closeCards,
     finishGame,
 } from '../actions';
+import { getGame, getGameSize } from '../selectors';
 
 import {
     isFirstCardOpened,
@@ -15,12 +16,13 @@ import {
 
 export default store => next => action => {
     const result = next(action);
+    const state = store.getState();
 
     switch (action.type) {
         case CHOOSE_CARD: {
-            if (!isFirstCardOpened(store.getState().get('game'))) {
+            if (!isFirstCardOpened(getGame(state))) {
                 store.dispatch(openCard(action.cardId));
-            } else if (isPair(store.getState().get('game'), action.cardId)) {
+            } else if (isPair(getGame(state), action.cardId)) {
                 store.dispatch(guessPair(action.cardId));
             } else {
                 store.dispatch(openCard(action.cardId));
@@ -34,9 +36,9 @@ export default store => next => action => {
         }
 
         case GUESS_PAIR: {
-            const gameSize = store.getState().getIn(['game', 'size']);
+            const gameSize = getGameSize(state);
 
-            if (getGuessedPairsTotal(store.getState().get('game')) === gameSize * gameSize) {
+            if (getGuessedPairsTotal(getGame(state)) === gameSize * gameSize) {
                 setTimeout(() => {
                     store.dispatch(finishGame());
                 }, 1000);
